@@ -1,26 +1,279 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────
+   MIRAA — TOKENS DE MARQUE (palette marron/beige)
+   ───────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* SURFACES */
+  --color-bg:              #F5EFE6;
+  --color-surface:         #EDE3D4;
+  --color-surface-2:       #E0D3BF;
+  --color-surface-dark:    #2C1A0E;
+  --color-surface-dark-2:  #3D2614;
+
+  /* TEXTE */
+  --color-text:            #2C1A0E;
+  --color-text-muted:      #7A5C42;
+  --color-text-faint:      #B09070;
+  --color-text-inverse:    #F5EFE6;
+
+  /* ACCENT MARRON ACAJOU */
+  --color-accent:          #8B5C35;
+  --color-accent-hover:    #7A4D28;
+  --color-accent-active:   #6A3E1C;
+  --color-accent-muted:    #D4B896;
+
+  /* TYPE SCALE */
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.8rem,   0.75rem + 0.3vw,  0.9375rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.0625rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.6vw,  1.375rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.2vw,  2rem);
+  --text-2xl:  clamp(2rem,     1.4rem  + 2.5vw,  3.5rem);
+  --text-3xl:  clamp(2.8rem,   1.5rem  + 5vw,    6rem);
+  --text-hero: clamp(4rem,     2rem    + 8vw,    9rem);
+
+  /* SPACING */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* CONTENT WIDTHS */
+  --content-narrow:  640px;
+  --content-default: 1024px;
+  --content-wide:    1280px;
+
+  /* TRANSITIONS */
+  --transition-fast:        150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-interactive: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth:      400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow:        700ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* SHADOWS */
+  --shadow-xs:  0 1px 2px oklch(0.15 0.04 40 / 0.06);
+  --shadow-sm:  0 2px 8px oklch(0.15 0.04 40 / 0.08);
+  --shadow-md:  0 8px 24px oklch(0.15 0.04 40 / 0.10);
+  --shadow-lg:  0 20px 48px oklch(0.15 0.04 40 / 0.14);
+  --shadow-xl:  0 40px 80px oklch(0.15 0.04 40 / 0.18);
+
+  /* shadcn variables → mappées aux tokens Miraa */
+  --background:           #F5EFE6;
+  --foreground:           #2C1A0E;
+  --card:                 #EDE3D4;
+  --card-foreground:      #2C1A0E;
+  --popover:              #F5EFE6;
+  --popover-foreground:   #2C1A0E;
+  --primary:              #8B5C35;
+  --primary-foreground:   #F5EFE6;
+  --secondary:            #EDE3D4;
+  --secondary-foreground: #2C1A0E;
+  --muted:                #EDE3D4;
+  --muted-foreground:     #7A5C42;
+  --accent:               #E0D3BF;
+  --accent-foreground:    #2C1A0E;
+  --destructive:          oklch(0.577 0.245 27.325);
+  --border:               oklch(from #2C1A0E l c h / 0.12);
+  --input:                #E0D3BF;
+  --ring:                 #8B5C35;
+  --radius:               0.25rem;
+  --sidebar:              #EDE3D4;
+  --sidebar-foreground:   #2C1A0E;
+  --sidebar-primary:      #8B5C35;
+  --sidebar-primary-foreground: #F5EFE6;
+  --sidebar-accent:       #E0D3BF;
+  --sidebar-accent-foreground: #2C1A0E;
+  --sidebar-border:       oklch(from #2C1A0E l c h / 0.12);
+  --sidebar-ring:         #8B5C35;
 }
 
+/* ─────────────────────────────────────────────
+   TAILWIND v4 THEME BRIDGE
+   ───────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonts */
+  --font-display: var(--font-display);
+  --font-body:    var(--font-body);
+  --font-sans:    var(--font-body);
+
+  /* Colors Miraa */
+  --color-beige:         var(--color-bg);
+  --color-surface:       var(--color-surface);
+  --color-surface-alt:   var(--color-surface-2);
+  --color-marron:        var(--color-text);
+  --color-marron-muted:  var(--color-text-muted);
+  --color-marron-faint:  var(--color-text-faint);
+  --color-ivory:         var(--color-text-inverse);
+  --color-accent:        var(--color-accent);
+  --color-accent-hover:  var(--color-accent-hover);
+  --color-accent-muted:  var(--color-accent-muted);
+  --color-dark:          var(--color-surface-dark);
+  --color-dark-deep:     var(--color-surface-dark-2);
+
+  /* shadcn bridge */
+  --color-background:          var(--background);
+  --color-foreground:          var(--foreground);
+  --color-card:                var(--card);
+  --color-card-foreground:     var(--card-foreground);
+  --color-primary:             var(--primary);
+  --color-primary-foreground:  var(--primary-foreground);
+  --color-secondary:           var(--secondary);
+  --color-secondary-foreground:var(--secondary-foreground);
+  --color-muted:               var(--muted);
+  --color-muted-foreground:    var(--muted-foreground);
+  --color-accent:              var(--accent);
+  --color-accent-foreground:   var(--accent-foreground);
+  --color-border:              var(--border);
+  --color-input:               var(--input);
+  --color-ring:                var(--ring);
+  --color-sidebar:             var(--sidebar);
+  --color-sidebar-ring:        var(--sidebar-ring);
+  --color-sidebar-border:      var(--sidebar-border);
+  --color-sidebar-accent:      var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-primary:     var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-foreground:  var(--sidebar-foreground);
+
+  --radius-sm:   calc(var(--radius) * 0.6);
+  --radius-md:   calc(var(--radius) * 0.8);
+  --radius-lg:   var(--radius);
+  --radius-xl:   calc(var(--radius) * 1.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─────────────────────────────────────────────
+   BASE LAYER
+   ───────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-weight: 300;
+    font-size: var(--text-base);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: none;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display), 'Georgia', serif;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h4, h5, h6 {
+    font-weight: 400;
+  }
+
+  a, button, [role="button"] {
+    cursor: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─────────────────────────────────────────────
+   LAYOUT UTILITIES
+   ───────────────────────────────────────────── */
+@layer utilities {
+  .container-miraa {
+    max-width: var(--content-wide);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .container-tight {
+    max-width: var(--content-default);
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .section {
+    padding-block: clamp(var(--space-12), 8vw, var(--space-32));
+  }
+
+  .section-tight {
+    padding-block: clamp(var(--space-8), 5vw, var(--space-20));
+  }
+
+  .dark-section {
+    background-color: var(--color-surface-dark);
+    color: var(--color-text-inverse);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MARQUEE
+   ───────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (max-width: 640px) {
+  .animate-marquee { animation-duration: 50s; }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR & SELECTION
+   ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-accent-muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+::selection {
+  background: oklch(from #8B5C35 l c h / 0.2);
+  color: var(--color-text);
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+   ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
 }

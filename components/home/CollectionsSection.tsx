@@ -1,0 +1,74 @@
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+
+interface CollectionCardProps {
+  title: string
+  subtitle: string
+  image: string
+  href: string
+}
+
+function CollectionCard({ title, subtitle, image, href }: CollectionCardProps) {
+  return (
+    <Link href={href} className="relative group overflow-hidden block h-[70vh] min-h-[500px]">
+      <Image
+        src={image}
+        alt={title}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#2C1A0E]/70 via-transparent to-transparent" />
+
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+        <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-accent-muted)] mb-2 font-body font-400">
+          {subtitle}
+        </p>
+        <h2
+          className="font-display font-light italic text-[var(--color-text-inverse)] mb-6 leading-tight"
+          style={{ fontSize: 'var(--text-2xl)' }}
+        >
+          {title}
+        </h2>
+
+        {/* CTA — visible au hover */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileHover={{ opacity: 1, y: 0 }}
+          className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        >
+          <span className="text-xs uppercase tracking-[0.15em] text-[var(--color-text-inverse)] border-b border-[var(--color-text-inverse)]/50 pb-0.5 font-body font-400">
+            Explorer
+          </span>
+        </motion.div>
+      </div>
+    </Link>
+  )
+}
+
+export function CollectionsSection() {
+  return (
+    <section>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <CollectionCard
+          title="Automne–Hiver 2025"
+          subtitle="Nouvelle saison"
+          image="https://picsum.photos/seed/collection-aw/900/1200"
+          href="/shop?collection=ete"
+        />
+        <CollectionCard
+          title="Essentiels Miraa"
+          subtitle="Intemporel"
+          image="https://picsum.photos/seed/collection-essentiels/900/1200"
+          href="/shop?collection=essentiels"
+        />
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,173 @@
+'use client'
+
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react'
+import { useCartStore } from '@/lib/store/cartStore'
+
+const navLinks = [
+  { href: '/shop', label: 'Collection' },
+  { href: '/shop?collection=essentiels', label: 'Essentiels' },
+  { href: '/shop?collection=ete', label: 'Été 2025' },
+  { href: '/about', label: 'La Maison' },
+]
+
+/* Hauteur navbar réduite pour coller au mockup */
+const NAV_H = 'h-14'
+
+export function Navbar() {
+  const { scrollY } = useScroll()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [cartCount, setCartCount] = useState(0)
+
+  const navBg = useTransform(
+    scrollY,
+    [0, 80],
+    ['rgba(245,239,230,0)', 'rgba(245,239,230,0.92)']
+  )
+  const navBorderOpacity = useTransform(scrollY, [0, 80], [0, 1])
+
+  useEffect(() => {
+    setMounted(true)
+
+    // Initialiser le count et s'abonner aux changements du store
+    const getCount = () =>
+      useCartStore.getState().items.reduce((a, i) => a + i.quantity, 0)
+    setCartCount(getCount())
+    const unsubCart = useCartStore.subscribe(() => setCartCount(getCount()))
+
+    const unsubScroll = scrollY.on('change', (v) => setIsScrolled(v > 40))
+
+    return () => {
+      unsubCart()
+      unsubScroll()
+    }
+  }, [scrollY])
+
+  return (
+    <>
+      <motion.nav
+        style={{ backgroundColor: navBg }}
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-[2px]"
+      >
+        <motion.div
+          style={{ opacity: navBorderOpacity }}
+          className="absolute bottom-0 left-0 right-0 h-px bg-[var(--color-border)]"
+        />
+
+        <div className={`container-miraa flex items-center justify-between ${NAV_H}`}>
+          {/* Logo — Cormorant italic, uppercase tracké comme dans le mockup */}
+          <Link
+            href="/"
+            className="font-display italic font-light transition-opacity duration-200 hover:opacity-70"
+            style={{
+              fontSize: '22px',
+              letterSpacing: '0.12em',
+              color: isScrolled ? 'var(--color-text)' : 'white',
+            }}
+          >
+            Miraa
+          </Link>
+
+          {/* Nav links — desktop */}
+          <nav className="hidden md:flex items-center gap-7">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="font-body font-light transition-opacity duration-200 hover:opacity-50"
+                style={{
+                  fontSize: '11px',
+                  letterSpacing: '0.13em',
+                  textTransform: 'uppercase',
+                  color: isScrolled ? 'var(--color-text-muted)' : 'rgba(255,255,255,0.85)',
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Icons right */}
+          <div className="flex items-center gap-4">
+            <button
+              aria-label="Rechercher"
+              className="p-1 transition-opacity duration-200 hover:opacity-50"
+              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+            >
+              <Search size={16} strokeWidth={1.25} />
+            </button>
+
+            <Link
+              href="/wishlist"
+              aria-label="Liste de souhaits"
+              className="p-1 transition-opacity duration-200 hover:opacity-50"
+              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+            >
+              <Heart size={16} strokeWidth={1.25} />
+            </Link>
+
+            <Link
+              href="/cart"
+              aria-label={`Panier${mounted && cartCount > 0 ? `, ${cartCount} article${cartCount > 1 ? 's' : ''}` : ''}`}
+              className="relative p-1 transition-opacity duration-200 hover:opacity-50"
+              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+            >
+              <ShoppingBag size={16} strokeWidth={1.25} />
+              {mounted && cartCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-[var(--color-accent)] text-[var(--color-text-inverse)] text-[10px] flex items-center justify-center font-body font-400">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+
+            {/* Burger — mobile */}
+            <button
+              aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+              onClick={() => setMenuOpen((o) => !o)}
+              className="md:hidden p-1 transition-opacity duration-200 hover:opacity-50"
+              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+            >
+              {menuOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 200 }}
+            className="fixed inset-0 z-40 bg-[var(--color-surface-dark)] flex flex-col pt-20 px-8"
+          >
+            <nav className="flex flex-col gap-6 mt-8">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06, type: 'spring', damping: 25 }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="font-display text-3xl font-light text-[var(--color-text-inverse)] hover:opacity-60 transition-opacity duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
