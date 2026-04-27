@@ -7,27 +7,42 @@ import { fadeInUp, staggerContainer, scrollReveal } from '@/lib/animations'
 const timeline = [
   {
     year: '2019',
-    title: "L'idée",
+    title: "La traversée",
     description:
-      "Miraa naît du refus d'un fondateur qui ne trouvait pas ce qu'il cherchait : des pièces qui durent, sans compromis sur la matière.",
+      "Miraa naît d'une conviction forgée entre Amsterdam et Milan : l'élégance masculine n'a pas de nationalité, elle a une mémoire.",
   },
   {
     year: '2021',
-    title: 'Premiers ateliers',
+    title: 'Les premiers ateliers',
     description:
-      'Premiers partenariats avec des ateliers en France et au Portugal. Début de la ligne Essentiels.',
+      "Installation à Paris. Premiers partenariats avec des ateliers en France, en Italie et au Portugal. La ligne Essentiels prend forme.",
   },
   {
     year: '2023',
-    title: 'Ouverture en ligne',
+    title: 'Maison Miraa',
     description:
-      'Lancement du site Miraa.fr. La collection compte 12 pièces permanentes et deux drops saisonniers par an.',
+      'Lancement du site. Douze pièces permanentes. Deux drops par an. La maison devient publique — sans jamais devenir ordinaire.',
   },
   {
-    year: '2025',
-    title: 'Automne–Hiver',
+    year: '2026',
+    title: 'Été 2026',
     description:
-      "La nouvelle collection AH25 introduit le cachemire et élargit la gamme manteaux. 8 nouvelles références.",
+      "La nouvelle collection s'ouvre vers le soleil sans perdre sa structure. Huit références. Une évidence.",
+  },
+]
+
+const influences = [
+  {
+    city: 'Amsterdam',
+    description:
+      "La géométrie des façades. La sobriété protestante. Un rapport au vêtement comme à l'architecture — fonctionnel d'abord, beau par nécessité.",
+    image: 'https://picsum.photos/seed/miraa-amsterdam-city/900/900',
+  },
+  {
+    city: 'Milan',
+    description:
+      "Le geste du tailleur. La laine qui tombe. Un savoir-faire transmis comme une langue, dans le silence des ateliers du Quadrilatero.",
+    image: 'https://picsum.photos/seed/miraa-milan-city/900/900',
   },
 ]
 
@@ -38,7 +53,7 @@ export function AboutContent() {
       <section className="relative h-[70vh] overflow-hidden">
         <Image
           src="https://picsum.photos/seed/miraa-about/1920/1080"
-          alt="La Maison Miraa"
+          alt="Maison Miraa"
           fill
           className="object-cover"
           priority
@@ -55,20 +70,20 @@ export function AboutContent() {
             variants={fadeInUp}
             className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-accent-muted)] mb-3 font-body"
           >
-            La Maison
+            Maison Miraa — Paris
           </motion.p>
           <motion.h1
             variants={fadeInUp}
             className="font-display font-light italic text-[var(--color-text-inverse)] leading-tight"
             style={{ fontSize: 'var(--text-3xl)' }}
           >
-            Une obsession <br />
-            pour la matière.
+            Une obsession<br />
+            pour la silhouette.
           </motion.h1>
         </motion.div>
       </section>
 
-      {/* Manifeste */}
+      {/* Intro */}
       <section className="section">
         <div className="container-tight">
           <motion.div
@@ -83,34 +98,73 @@ export function AboutContent() {
               className="font-display font-light leading-relaxed text-[var(--color-text)] mb-6"
               style={{ fontSize: 'var(--text-xl)' }}
             >
-              Miraa est née d'un constat simple :{' '}
-              <em>la plupart des vêtements ne méritent pas d'être portés.</em>
+              Il y a des maisons que l'on n'oublie pas.{' '}
+              <em>Celles qui sentent quelque chose — le lin repassé, l'encre fraîche, la pierre froide.</em>
             </motion.p>
 
             <motion.p
               variants={fadeInUp}
               className="text-base text-[var(--color-text-muted)] font-light leading-relaxed mb-6"
             >
-              Pas parce qu'ils sont moches. Parce qu'ils sont creux. Assemblés vite, en fibres
-              synthétiques, pour une saison. Puis oubliés dans un placard, puis jetés.
-            </motion.p>
-
-            <motion.p
-              variants={fadeInUp}
-              className="text-base text-[var(--color-text-muted)] font-light leading-relaxed mb-6"
-            >
-              Miraa propose l'inverse. Des pièces pensées pour s'améliorer avec l'usage.
-              Du lin qui s'assouplit. De la laine qui se patine. Du cuir qui prend la forme
-              de celui qui le porte. Une garde-robe de caractère, pas de circonstance.
+              Miraa est née d'une traversée. De canaux hollandais vus au petit matin, de portiques
+              milanais où le soleil dessine des ombres parfaites sur la laine. D'une conviction :
+              l'élégance masculine n'a pas de nationalité, elle a une mémoire.
             </motion.p>
 
             <motion.p
               variants={fadeInUp}
               className="text-base text-[var(--color-text-muted)] font-light leading-relaxed"
             >
-              La matière, avant tout. Pas le logo. Pas la tendance. Pas le prix gonflé
-              par un marketing agressif. Juste la matière, la coupe, et le temps long.
+              La maison s'est installée à Paris comme on pose une valise qu'on ne défait qu'à moitié —
+              gardant l'œil tourné vers l'ailleurs, les mains ancrées dans l'atelier.
             </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Manifeste */}
+      <section className="section bg-[var(--color-surface-dark)]" id="manifeste">
+        <div className="container-tight">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <motion.p
+              variants={fadeInUp}
+              className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-accent-muted)] mb-8 font-body"
+            >
+              Manifeste
+            </motion.p>
+            <motion.blockquote
+              variants={fadeInUp}
+              className="font-display font-light italic text-[var(--color-text-inverse)] leading-tight mb-12"
+              style={{ fontSize: 'var(--text-2xl)' }}
+            >
+              "Nous ne fabriquons pas des vêtements.<br />
+              Nous construisons des silhouettes<br />
+              que les salles se rappellent."
+            </motion.blockquote>
+            <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+              {[
+                { n: '01', t: 'La coupe comme langue', d: "Amsterdam pour la structure. Milan pour la fluidité. Un dialogue entre deux rigueurs." },
+                { n: '02', t: "L'absence comme présence", d: "Ce que Miraa retire d'une pièce vaut autant que ce qu'elle y met." },
+                { n: '03', t: 'Le temps comme matière', d: "Des collections conçues pour vieillir mieux que leur époque." },
+                { n: '04', t: 'Paris comme arbitre', d: "La ville qui a toujours su distinguer ce qui dure de ce qui brille." },
+              ].map((item) => (
+                <div key={item.n} className="flex gap-4">
+                  <span className="font-body text-[10px] uppercase tracking-widest text-[var(--color-accent-muted)] mt-1 shrink-0">
+                    {item.n}
+                  </span>
+                  <div>
+                    <p className="font-display font-light text-[var(--color-text-inverse)] mb-1">{item.t}</p>
+                    <p className="text-sm text-[var(--color-text-faint)] font-light leading-relaxed">{item.d}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -126,7 +180,7 @@ export function AboutContent() {
             className="font-display font-light text-[var(--color-text)] mb-16"
             style={{ fontSize: 'var(--text-2xl)' }}
           >
-            Notre histoire
+            L'histoire
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -139,13 +193,7 @@ export function AboutContent() {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.08 }}
               >
-                <p
-                  className="font-display font-light mb-2"
-                  style={{
-                    fontSize: 'var(--text-2xl)',
-                    color: 'var(--color-accent-muted)',
-                  }}
-                >
+                <p className="font-display font-light mb-2" style={{ fontSize: 'var(--text-2xl)', color: 'var(--color-accent-muted)' }}>
                   {item.year}
                 </p>
                 <h3 className="font-display font-light text-lg text-[var(--color-text)] mb-3">
@@ -160,64 +208,89 @@ export function AboutContent() {
         </div>
       </section>
 
-      {/* Matières */}
-      <section id="matieres" className="section">
+      {/* Influences */}
+      <section id="influences" className="section">
         <div className="container-miraa">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              variants={scrollReveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative aspect-square overflow-hidden"
-            >
-              <Image
-                src="https://picsum.photos/seed/miraa-matieres/900/900"
-                alt="Nos matières"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </motion.div>
+          <motion.h2
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="font-display font-light text-[var(--color-text)] mb-4"
+            style={{ fontSize: 'var(--text-2xl)' }}
+          >
+            Les deux influences
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-base text-[var(--color-text-muted)] font-light mb-16 max-w-lg"
+          >
+            Miraa ne vient pas d'un seul endroit. Elle est le résultat d'un dialogue entre deux villes
+            qui ne se ressemblent pas mais se respectent.
+          </motion.p>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.p
-                variants={fadeInUp}
-                className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-faint)] mb-4 font-body"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {influences.map((inf, i) => (
+              <motion.div
+                key={inf.city}
+                variants={scrollReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
               >
-                Engagement
-              </motion.p>
-              <motion.h2
-                variants={fadeInUp}
-                className="font-display font-light text-[var(--color-text)] mb-6 leading-tight"
-                style={{ fontSize: 'var(--text-2xl)' }}
-              >
-                Sourcing <br />
-                responsable.
-              </motion.h2>
-              <motion.p
-                variants={fadeInUp}
-                className="text-base text-[var(--color-text-muted)] font-light leading-relaxed mb-4"
-              >
-                Nous travaillons uniquement avec des fournisseurs que nous avons visités.
-                Pas de traçabilité de façade : nous connaissons les ateliers, les artisans,
-                et les filières de production de chaque fibre.
-              </motion.p>
-              <motion.p
-                variants={fadeInUp}
-                className="text-base text-[var(--color-text-muted)] font-light leading-relaxed"
-              >
-                Nos matières — lin portugais, laine mérinos italienne, cachemire mongol,
-                coton selvedge japonais — sont sélectionnées pour leur qualité intrinsèque,
-                pas pour leur image.
-              </motion.p>
-            </motion.div>
+                <div className="relative aspect-square overflow-hidden mb-6">
+                  <Image
+                    src={inf.image}
+                    alt={inf.city}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-accent-muted)] mb-2 font-body">
+                  Origine
+                </p>
+                <h3 className="font-display font-light text-[var(--color-text)] mb-3" style={{ fontSize: 'var(--text-xl)' }}>
+                  {inf.city}
+                </h3>
+                <p className="text-base text-[var(--color-text-muted)] font-light leading-relaxed">
+                  {inf.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Pour celui qui sait */}
+      <section className="section bg-[var(--color-surface)]">
+        <div className="container-tight">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <motion.p
+              variants={fadeInUp}
+              className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-faint)] mb-6 font-body"
+            >
+              Pour celui qui sait
+            </motion.p>
+            <motion.p
+              variants={fadeInUp}
+              className="font-display font-light italic text-[var(--color-text)] leading-relaxed"
+              style={{ fontSize: 'var(--text-xl)' }}
+            >
+              Miraa s'adresse à l'homme qui n'a plus rien à prouver —<br />
+              seulement à choisir.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
     </div>

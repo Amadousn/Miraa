@@ -2,14 +2,18 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react'
 import { useCartStore } from '@/lib/store/cartStore'
 
+/* Pages avec hero sombre — navbar démarre en blanc */
+const DARK_HERO_PAGES = ['/']
+
 const navLinks = [
   { href: '/shop', label: 'Collection' },
   { href: '/shop?collection=essentiels', label: 'Essentiels' },
-  { href: '/shop?collection=ete', label: 'Été 2025' },
+  { href: '/shop?collection=ete', label: 'Été 2026' },
   { href: '/about', label: 'La Maison' },
 ]
 
@@ -18,17 +22,20 @@ const NAV_H = 'h-14'
 
 export function Navbar() {
   const { scrollY } = useScroll()
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [cartCount, setCartCount] = useState(0)
+
+  const isHeroPage = DARK_HERO_PAGES.includes(pathname)
 
   const navBg = useTransform(
     scrollY,
     [0, 80],
     ['rgba(245,239,230,0)', 'rgba(245,239,230,0.92)']
   )
-  const navBorderOpacity = useTransform(scrollY, [0, 80], [0, 1])
+  const navBorderOpacity = useTransform(scrollY, [0, 80], [0.4, 1])
 
   useEffect(() => {
     setMounted(true)
@@ -54,19 +61,24 @@ export function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-[2px]"
       >
         <motion.div
-          style={{ opacity: navBorderOpacity }}
-          className="absolute bottom-0 left-0 right-0 h-px bg-[var(--color-border)]"
+          style={{
+            opacity: navBorderOpacity,
+            backgroundColor: (isScrolled || !isHeroPage) ? 'var(--color-border)' : 'rgba(255,255,255,0.18)',
+          }}
+          className="absolute bottom-0 left-0 right-0 h-px"
         />
 
         <div className={`container-miraa flex items-center justify-between ${NAV_H}`}>
           {/* Logo — Cormorant italic, uppercase tracké comme dans le mockup */}
           <Link
             href="/"
-            className="font-display italic font-light transition-opacity duration-200 hover:opacity-70"
+            className="font-display font-light transition-opacity duration-200 hover:opacity-70"
             style={{
-              fontSize: '22px',
-              letterSpacing: '0.12em',
-              color: isScrolled ? 'var(--color-text)' : 'white',
+              fontSize: '32px',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'rgba(255,248,235,1)',
+              textShadow: (isScrolled || !isHeroPage) ? 'none' : '0 1px 12px rgba(30,20,10,0.35)',
             }}
           >
             Miraa
@@ -80,10 +92,11 @@ export function Navbar() {
                 href={link.href}
                 className="font-body font-light transition-opacity duration-200 hover:opacity-50"
                 style={{
-                  fontSize: '11px',
+                  fontSize: '13px',
                   letterSpacing: '0.13em',
                   textTransform: 'uppercase',
-                  color: isScrolled ? 'var(--color-text-muted)' : 'rgba(255,255,255,0.85)',
+                  color: (isScrolled || !isHeroPage) ? 'var(--color-text-muted)' : 'rgba(255,248,235,0.95)',
+                  textShadow: (isScrolled || !isHeroPage) ? 'none' : '0 1px 8px rgba(30,20,10,0.4)',
                 }}
               >
                 {link.label}
@@ -96,7 +109,7 @@ export function Navbar() {
             <button
               aria-label="Rechercher"
               className="p-1 transition-opacity duration-200 hover:opacity-50"
-              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+              style={{ color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'white' }}
             >
               <Search size={16} strokeWidth={1.25} />
             </button>
@@ -105,7 +118,7 @@ export function Navbar() {
               href="/wishlist"
               aria-label="Liste de souhaits"
               className="p-1 transition-opacity duration-200 hover:opacity-50"
-              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+              style={{ color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'white' }}
             >
               <Heart size={16} strokeWidth={1.25} />
             </Link>
@@ -114,7 +127,7 @@ export function Navbar() {
               href="/cart"
               aria-label={`Panier${mounted && cartCount > 0 ? `, ${cartCount} article${cartCount > 1 ? 's' : ''}` : ''}`}
               className="relative p-1 transition-opacity duration-200 hover:opacity-50"
-              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+              style={{ color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'white' }}
             >
               <ShoppingBag size={16} strokeWidth={1.25} />
               {mounted && cartCount > 0 && (
@@ -129,7 +142,7 @@ export function Navbar() {
               aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
               onClick={() => setMenuOpen((o) => !o)}
               className="md:hidden p-1 transition-opacity duration-200 hover:opacity-50"
-              style={{ color: isScrolled ? 'var(--color-text)' : 'white' }}
+              style={{ color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'white' }}
             >
               {menuOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
             </button>

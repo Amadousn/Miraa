@@ -1,18 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { newArrivals } from '@/lib/data/products'
+import { getNewProducts } from '@/lib/shopify'
+import { toProduct } from '@/lib/shopify/toProduct'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
+import type { Product } from '@/lib/types'
 import Link from 'next/link'
 
 export function NewArrivalsSection() {
-  const displayed = newArrivals.slice(0, 4)
+  const [products, setProducts] = useState<Product[]>(newArrivals.slice(0, 4))
+
+  useEffect(() => {
+    getNewProducts(4).then((shopifyProducts) => {
+      if (shopifyProducts.length > 0) {
+        setProducts(shopifyProducts.map(toProduct))
+      }
+    })
+  }, [])
 
   return (
     <section className="section bg-[var(--color-bg)]">
       <div className="container-miraa">
-        {/* Header */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -31,7 +42,6 @@ export function NewArrivalsSection() {
               Nouveautés
             </h2>
           </motion.div>
-
           <motion.div variants={fadeInUp}>
             <Link
               href="/shop"
@@ -42,7 +52,6 @@ export function NewArrivalsSection() {
           </motion.div>
         </motion.div>
 
-        {/* Grid */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -50,14 +59,13 @@ export function NewArrivalsSection() {
           viewport={{ once: true, margin: '-80px' }}
           className="product-grid"
         >
-          {displayed.map((product, i) => (
+          {products.map((product, i) => (
             <motion.div key={product.id} variants={fadeInUp}>
               <ProductCard product={product} priority={i < 2} />
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Mobile CTA */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"

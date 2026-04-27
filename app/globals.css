@@ -172,7 +172,6 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: none;
   }
 
   h1, h2, h3 {
@@ -187,7 +186,12 @@
   }
 
   a, button, [role="button"] {
-    cursor: none;
+    cursor: pointer;
+  }
+
+  /* Framer Motion wraps — évite la disparition du curseur pendant les animations */
+  [style*="transform"], article, section a {
+    cursor: inherit;
   }
 }
 

@@ -1,18 +1,29 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { bestsellers } from '@/lib/data/products'
+import { getBestsellerProducts } from '@/lib/shopify'
+import { toProduct } from '@/lib/shopify/toProduct'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
+import type { Product } from '@/lib/types'
 import Link from 'next/link'
 
 export function BestsellersSection() {
-  const displayed = bestsellers.slice(0, 4)
+  const [products, setProducts] = useState<Product[]>(bestsellers.slice(0, 4))
+
+  useEffect(() => {
+    getBestsellerProducts(4).then((shopifyProducts) => {
+      if (shopifyProducts.length > 0) {
+        setProducts(shopifyProducts.map(toProduct))
+      }
+    })
+  }, [])
 
   return (
     <section className="section bg-[var(--color-surface)]">
       <div className="container-miraa">
-        {/* Header */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -31,7 +42,6 @@ export function BestsellersSection() {
               Bestsellers
             </h2>
           </motion.div>
-
           <motion.div variants={fadeInUp}>
             <Link
               href="/shop"
@@ -42,7 +52,6 @@ export function BestsellersSection() {
           </motion.div>
         </motion.div>
 
-        {/* Grid */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -50,7 +59,7 @@ export function BestsellersSection() {
           viewport={{ once: true, margin: '-80px' }}
           className="product-grid"
         >
-          {displayed.map((product) => (
+          {products.map((product) => (
             <motion.div key={product.id} variants={fadeInUp}>
               <ProductCard product={product} />
             </motion.div>

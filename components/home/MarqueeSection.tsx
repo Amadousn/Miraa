@@ -1,12 +1,12 @@
 const items = [
-  'Savoir-faire français',
-  'Matières nobles',
-  'Coupe intemporelle',
-  'Production éthique',
-  'Fait en Europe',
-  'Silence, matière, présence',
-  'La matière avant tout',
-  'Garde-robe de caractère',
+  'Amsterdam — Milan — Paris',
+  'La coupe comme langue',
+  'Des silhouettes que les salles se rappellent',
+  "L'absence comme présence",
+  'Pour celui qui n\'a plus rien à prouver',
+  'Le temps comme matière',
+  'Maison Miraa',
+  'Ce qui tombe juste ne s\'explique pas',
 ]
 
 export function MarqueeSection() {
@@ -22,7 +22,7 @@ export function MarqueeSection() {
             </span>
             <span
               className="w-1 h-1 rounded-full shrink-0"
-              style={{ backgroundColor: 'var(--color-accent)' }}
+              style={{ backgroundColor: 'rgba(212,184,150,0.55)' }}
               aria-hidden="true"
             />
           </span>

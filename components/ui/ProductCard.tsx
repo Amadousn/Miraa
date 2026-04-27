@@ -22,6 +22,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
       className="group"
       whileHover={{ scale: 1.01 }}
       transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+      style={{ cursor: 'pointer' }}
     >
       <Link href={`/shop/${product.id}`} className="block">
         {/* Image container */}

@@ -9,21 +9,23 @@ interface CollectionCardProps {
   subtitle: string
   image: string
   href: string
+  objectPosition?: string
 }
 
-function CollectionCard({ title, subtitle, image, href }: CollectionCardProps) {
+function CollectionCard({ title, subtitle, image, href, objectPosition = '50% 30%' }: CollectionCardProps) {
   return (
-    <Link href={href} className="relative group overflow-hidden block h-[70vh] min-h-[500px]">
+    <Link href={href} className="relative group overflow-hidden block h-[70vh] min-h-[500px]" style={{ cursor: 'pointer' }}>
       <Image
         src={image}
         alt={title}
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        className="transition-transform duration-700 group-hover:scale-105"
+        style={{ objectFit: 'cover', objectPosition }}
         sizes="(max-width: 768px) 100vw, 50vw"
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#2C1A0E]/70 via-transparent to-transparent" />
+      {/* Overlay — juste pour lisibilité du texte en bas */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
@@ -57,16 +59,18 @@ export function CollectionsSection() {
     <section>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <CollectionCard
-          title="Automne–Hiver 2025"
-          subtitle="Nouvelle saison"
-          image="https://picsum.photos/seed/collection-aw/900/1200"
+          title="Été 2026"
+          subtitle="Arrive bientôt"
+          image="/été.jpg"
           href="/shop?collection=ete"
+          objectPosition="25% 40%"
         />
         <CollectionCard
           title="Essentiels Miraa"
-          subtitle="Intemporel"
-          image="https://picsum.photos/seed/collection-essentiels/900/1200"
+          subtitle="Arrive bientôt"
+          image="/essentiel.jpg"
           href="/shop?collection=essentiels"
+          objectPosition="42% 25%"
         />
       </div>
     </section>

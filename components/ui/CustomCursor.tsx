@@ -25,14 +25,5 @@ export function CustomCursor() {
     return () => window.removeEventListener('mousemove', move)
   }, [cursorX, cursorY])
 
-  if (isTouch) return null
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 z-[9999] pointer-events-none"
-      style={{ x, y }}
-    >
-      <div className="w-3 h-3 rounded-full bg-[var(--color-accent)] mix-blend-multiply" />
-    </motion.div>
-  )
+  return null
 }

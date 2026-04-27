@@ -4,27 +4,24 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
 
-const materials = [
+const pillars = [
   {
-    name: 'Lin lavé',
-    origin: 'Portugal',
-    description:
-      "Filé dans les meilleures filatures portugaises. S'assouplit au fil des lavages pour révéler son tombé naturel.",
-    image: 'https://picsum.photos/seed/matiere-lin/600/400',
+    number: '01',
+    title: 'La coupe avant tout',
+    description: 'Amsterdam pour la structure, Milan pour le mouvement. Deux approches différentes, une même exigence.',
+    image: '/01.jpg',
   },
   {
-    name: 'Laine mérinos',
-    origin: 'Italie & Australie',
-    description:
-      'Extra-fine, thermorégulatrice, douce contre la peau. Le mérinos est le fil conducteur de notre collection Essentiels.',
-    image: 'https://picsum.photos/seed/matiere-laine/600/400',
+    number: '02',
+    title: "L'essentiel, rien de plus",
+    description: "Ce que Miraa enlève compte autant que ce qu'elle garde. Rien d'inutile, seulement ce qui se remarque sans s'imposer.",
+    image: '/02.jpg',
   },
   {
-    name: 'Cachemire',
-    origin: 'Mongolie',
-    description:
-      "Grade A. Récolté à la main sur les flancs de l'Himalaya. Incomparable en douceur, en légèreté, en durabilité.",
-    image: 'https://picsum.photos/seed/matiere-cachemire/600/400',
+    number: '03',
+    title: 'Le temps comme allié',
+    description: "Des pièces faites pour durer. Passer les années sans perdre leur place.",
+    image: '/03.jpg',
   },
 ]
 
@@ -32,31 +29,23 @@ export function MaterialsSection() {
   return (
     <section className="section bg-[var(--color-bg)]">
       <div className="container-miraa">
-        {/* Header */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="mb-16 max-w-lg"
+          className="mb-14 max-w-lg"
         >
-          <motion.p
-            variants={fadeInUp}
-            className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-faint)] mb-3 font-body"
-          >
-            Philosophie
-          </motion.p>
           <motion.h2
             variants={fadeInUp}
-            className="font-display font-light text-[var(--color-text)] leading-tight"
-            style={{ fontSize: 'var(--text-2xl)' }}
+            className="font-display font-light leading-tight"
+            style={{ fontSize: 'var(--text-2xl)', color: '#2C1A10', letterSpacing: '-0.01em' }}
           >
-            Le tissu, <br />
-            première couture.
+            Trois partis pris.<br />
+            Aucun compromis.
           </motion.h2>
         </motion.div>
 
-        {/* Grid matières */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -64,31 +53,29 @@ export function MaterialsSection() {
           viewport={{ once: true, margin: '-80px' }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          {materials.map((mat) => (
-            <motion.div key={mat.name} variants={fadeInUp}>
-              {/* Image */}
-              <div className="relative aspect-[3/2] overflow-hidden mb-6 bg-[var(--color-surface)]">
+          {pillars.map((pillar) => (
+            <motion.div key={pillar.number} variants={fadeInUp} style={{ display: 'flex', flexDirection: 'column' }}>
+              <div className="relative overflow-hidden bg-[var(--color-surface)]" style={{ aspectRatio: '3/2', marginBottom: '16px' }}>
                 <Image
-                  src={mat.image}
-                  alt={mat.name}
+                  src={pillar.image}
+                  alt={pillar.title}
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ filter: 'sepia(0.08) brightness(0.97) contrast(1.02) saturate(0.92)' }}
                 />
               </div>
-
-              {/* Info */}
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-faint)] mb-1 font-body">
-                {mat.origin}
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '10px', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--color-accent-muted)', marginBottom: '6px' }}>
+                {pillar.number}
               </p>
               <h3
-                className="font-display font-light text-[var(--color-text)] mb-3"
-                style={{ fontSize: 'var(--text-lg)' }}
+                className="font-display font-light"
+                style={{ fontSize: 'var(--text-lg)', color: '#2C1A10', marginBottom: '8px', lineHeight: 1.2 }}
               >
-                {mat.name}
+                {pillar.title}
               </h3>
-              <p className="text-sm text-[var(--color-text-muted)] font-light leading-relaxed">
-                {mat.description}
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', fontWeight: 300, lineHeight: 1.72, color: '#5A4035' }}>
+                {pillar.description}
               </p>
             </motion.div>
           ))}

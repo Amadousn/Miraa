@@ -1,22 +1,34 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { products } from '@/lib/data/products'
+import { products as mockProducts } from '@/lib/data/products'
+import { getProducts } from '@/lib/shopify'
+import { toProduct } from '@/lib/shopify/toProduct'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { fadeInUp, staggerContainer } from '@/lib/animations'
+import type { Product } from '@/lib/types'
 
 const categories = ['Tous', 'Hauts', 'Pantalons', 'Vestes', 'Manteaux']
 const collections = ['Tous', 'essentiels', 'ete']
 const collectionLabels: Record<string, string> = {
   Tous: 'Tous',
   essentiels: 'Essentiels',
-  ete: 'Automne–Hiver 2025',
+  ete: 'Été 2025',
 }
 
 export default function ShopPage() {
   const [activeCategory, setActiveCategory] = useState('Tous')
   const [activeCollection, setActiveCollection] = useState('Tous')
+  const [products, setProducts] = useState<Product[]>(mockProducts)
+
+  useEffect(() => {
+    getProducts(24).then((shopifyProducts) => {
+      if (shopifyProducts.length > 0) {
+        setProducts(shopifyProducts.map(toProduct))
+      }
+    })
+  }, [])
 
   const filtered = useMemo(() => {
     return products.filter((p) => {
@@ -24,7 +36,7 @@ export default function ShopPage() {
       const colOk = activeCollection === 'Tous' || p.collection === activeCollection
       return catOk && colOk
     })
-  }, [activeCategory, activeCollection])
+  }, [products, activeCategory, activeCollection])
 
   return (
     <div className="pt-16">
@@ -41,7 +53,6 @@ export default function ShopPage() {
             Collection
           </motion.h1>
 
-          {/* Filtres */}
           <div className="flex flex-wrap gap-8">
             {/* Catégorie */}
             <div className="flex flex-wrap gap-3">

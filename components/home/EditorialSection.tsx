@@ -19,8 +19,8 @@ export function EditorialSection() {
             className="relative aspect-[4/5] overflow-hidden"
           >
             <Image
-              src="https://picsum.photos/seed/miraa-editorial/900/1125"
-              alt="Miraa — La Maison"
+              src="/maison.jpg"
+              alt="Maison Miraa — Paris"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -34,47 +34,52 @@ export function EditorialSection() {
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
             className="flex flex-col justify-center"
+            style={{ maxWidth: '420px' }}
           >
             <motion.p
               variants={fadeInUp}
-              className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-faint)] mb-6 font-body"
+              style={{ fontFamily: 'var(--font-body)', fontSize: '10px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--color-text-faint)', marginBottom: '14px' }}
             >
               La Maison
             </motion.p>
 
             <motion.h2
               variants={fadeInUp}
-              className="font-display font-light text-[var(--color-text)] mb-6 leading-tight"
-              style={{ fontSize: 'var(--text-2xl)' }}
+              style={{ fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 'var(--text-2xl)', lineHeight: 1.05, letterSpacing: '-0.01em', color: '#2C1A10', marginBottom: '20px' }}
             >
-              Des pièces <br />
-              qui existent.
+              Il y a des maisons<br />
+              que l&apos;on n&apos;oublie pas.
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
-              className="text-base text-[var(--color-text-muted)] font-light leading-relaxed mb-4 max-w-md"
+              style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '14px', lineHeight: 1.75, color: '#5A4035', marginBottom: '12px' }}
             >
-              Miraa naît d'un refus. Refus du superflu, de la tendance,
-              du spectacle. Chaque pièce est pensée pour traverser le temps —
-              construite dans des matières nobles, coupée pour le corps qui bouge.
+              Miraa est née d&apos;un mouvement, d&apos;un regard posé ailleurs. Des matins calmes le long des canaux, des lumières chaudes sur la pierre, des ombres qui glissent sur la laine.
             </motion.p>
 
             <motion.p
               variants={fadeInUp}
-              className="text-base text-[var(--color-text-muted)] font-light leading-relaxed mb-8 max-w-md"
+              style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '14px', lineHeight: 1.75, color: '#5A4035', marginBottom: '12px' }}
             >
-              Nous travaillons avec des ateliers en France, en Italie et au Portugal.
-              Des partenaires qui partagent notre exigence : savoir-faire, durabilité,
-              respect de la matière.
+              Une idée simple nous guide depuis le début : l&apos;élégance masculine n&apos;a pas de frontière, mais elle garde une mémoire.
+            </motion.p>
+
+            <motion.p
+              variants={fadeInUp}
+              style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '14px', lineHeight: 1.75, color: '#5A4035', marginBottom: '28px' }}
+            >
+              À Paris, la maison s&apos;installe sans jamais se figer. Toujours entre deux lieux, entre deux instants, avec le souci du détail et le goût des matières justes.
             </motion.p>
 
             <motion.div variants={fadeInUp}>
               <Link
                 href="/about"
-                className="text-xs uppercase tracking-[0.15em] text-[var(--color-text)] border-b border-[var(--color-text)] pb-0.5 hover:text-[var(--color-accent)] hover:border-[var(--color-accent)] transition-colors duration-300 font-body font-400"
+                style={{ fontFamily: 'var(--font-body)', fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#2C1A10', borderBottom: '1px solid #2C1A10', paddingBottom: '2px', textDecoration: 'none', transition: 'opacity 0.2s ease', opacity: 1 }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.55' }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
               >
-                Découvrir la maison
+                L&apos;histoire complète
               </Link>
             </motion.div>
           </motion.div>
