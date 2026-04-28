@@ -54,6 +54,37 @@ export interface ShopifyProductResponse {
   product: ShopifyProduct | null
 }
 
+/* Types Cart Shopify */
+export interface ShopifyCartLine {
+  id: string
+  quantity: number
+  merchandise: {
+    id: string
+    title: string
+    price: ShopifyMoney
+    product: { title: string; handle: string }
+    image: ShopifyImage | null
+  }
+}
+
+export interface ShopifyCart {
+  id: string
+  checkoutUrl: string
+  totalQuantity: number
+  cost: {
+    totalAmount: ShopifyMoney
+    subtotalAmount: ShopifyMoney
+  }
+  lines: { edges: { node: ShopifyCartLine }[] }
+}
+
+export interface ShopifyCartResponse {
+  cartCreate?: { cart: ShopifyCart; userErrors: { field: string; message: string }[] }
+  cartLinesAdd?: { cart: ShopifyCart; userErrors: { field: string; message: string }[] }
+  cartLinesRemove?: { cart: ShopifyCart; userErrors: { field: string; message: string }[] }
+  cartLinesUpdate?: { cart: ShopifyCart; userErrors: { field: string; message: string }[] }
+}
+
 /* Type normalisé pour le front */
 export interface NormalizedProduct {
   id: string

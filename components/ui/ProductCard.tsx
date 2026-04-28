@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -16,6 +17,9 @@ interface ProductCardProps {
 export function ProductCard({ product, priority = false }: ProductCardProps) {
   const { toggleItem, isWishlisted } = useWishlistStore()
   const wishlisted = isWishlisted(product.id)
+  const [hovered, setHovered] = useState(false)
+
+  const hasSecondImage = product.images.length > 1
 
   return (
     <motion.article
@@ -23,18 +27,37 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
       whileHover={{ scale: 1.01 }}
       transition={{ type: 'spring', damping: 30, stiffness: 300 }}
       style={{ cursor: 'pointer' }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <Link href={`/shop/${product.id}`} className="block">
         {/* Image container */}
-        <div className="relative overflow-hidden aspect-[3/4] bg-[var(--color-surface)]">
+        <div className="relative overflow-hidden aspect-[3/4]" style={{ backgroundColor: '#EFECEB' }}>
+          {/* Primary image */}
           <Image
             src={product.images[0]}
             alt={product.name}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className={cn(
+              "object-cover transition-all duration-700 group-hover:scale-105",
+              hovered && hasSecondImage ? "opacity-0" : "opacity-100"
+            )}
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             priority={priority}
           />
+          {/* Secondary image — revealed on hover */}
+          {hasSecondImage && (
+            <Image
+              src={product.images[1]}
+              alt={`${product.name} — vue alternative`}
+              fill
+              className={cn(
+                "object-cover transition-opacity duration-700",
+                hovered ? "opacity-100" : "opacity-0"
+              )}
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            />
+          )}
 
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">

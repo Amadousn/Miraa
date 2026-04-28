@@ -1,9 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X, Minus, Plus, ShoppingBag } from 'lucide-react'
+import { X, Minus, Plus, ShoppingBag, Loader2 } from 'lucide-react'
 import {
   Sheet,
   SheetContent,
@@ -11,6 +12,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { useCartStore } from '@/lib/store/cartStore'
+import { createCart } from '@/lib/shopify'
 
 interface CartSidebarProps {
   open: boolean
@@ -18,9 +20,36 @@ interface CartSidebarProps {
 }
 
 export function CartSidebar({ open, onClose }: CartSidebarProps) {
-  const { items, removeItem, updateQuantity } = useCartStore()
+  const { items, removeItem, updateQuantity, clearCart } = useCartStore()
+  const [checkoutLoading, setCheckoutLoading] = useState(false)
 
   const total = items.reduce((acc, i) => acc + i.product.price * i.quantity, 0)
+
+  const handleCheckout = async () => {
+    // Construire les lignes pour le cart Shopify
+    const lines = items
+      .filter((item) => item.variantId) // uniquement les items avec un variantId Shopify
+      .map((item) => ({
+        merchandiseId: item.variantId!,
+        quantity: item.quantity,
+      }))
+
+    if (lines.length === 0) {
+      // Pas de variantId = données mock, on ne peut pas checkout
+      // Ouvrir un lien direct vers le shop Shopify
+      window.open('https://maison-miraa.myshopify.com', '_blank')
+      return
+    }
+
+    setCheckoutLoading(true)
+    const cart = await createCart(lines)
+    setCheckoutLoading(false)
+
+    if (cart?.checkoutUrl) {
+      clearCart()
+      window.location.href = cart.checkoutUrl
+    }
+  }
 
   return (
     <Sheet open={open} onOpenChange={(v) => !v && onClose()}>
@@ -168,13 +197,17 @@ export function CartSidebar({ open, onClose }: CartSidebarProps) {
             <p className="text-xs text-[var(--color-text-faint)] mb-4 font-light">
               Livraison offerte à partir de 200 €. Taxes incluses.
             </p>
-            <Link
-              href="/checkout"
-              onClick={onClose}
-              className="block w-full bg-[var(--color-surface-dark)] text-[var(--color-text-inverse)] text-xs uppercase tracking-[0.12em] py-4 text-center hover:bg-[var(--color-accent)] transition-colors duration-300 font-body font-400"
+            <button
+              onClick={handleCheckout}
+              disabled={checkoutLoading}
+              className="block w-full bg-[var(--color-surface-dark)] text-[var(--color-text-inverse)] text-xs uppercase tracking-[0.12em] py-4 text-center hover:bg-[var(--color-accent)] transition-colors duration-300 font-body font-400 disabled:opacity-60"
             >
-              Commander
-            </Link>
+              {checkoutLoading ? (
+                <Loader2 size={16} className="animate-spin mx-auto" />
+              ) : (
+                'Commander'
+              )}
+            </button>
           </div>
         )}
       </SheetContent>

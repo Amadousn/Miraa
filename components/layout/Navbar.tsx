@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Search, Heart, ShoppingBag, Menu, X } from 'lucide-react'
 import { useCartStore } from '@/lib/store/cartStore'
+import { CartSidebar } from '@/components/ui/CartSidebar'
 
 /* Pages avec hero sombre — navbar démarre en blanc */
 const DARK_HERO_PAGES = ['/']
@@ -27,6 +28,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [cartCount, setCartCount] = useState(0)
+  const [cartOpen, setCartOpen] = useState(false)
 
   const isHeroPage = DARK_HERO_PAGES.includes(pathname)
 
@@ -153,8 +155,8 @@ export function Navbar() {
               <Heart size={16} strokeWidth={1.25} />
             </Link>
 
-            <Link
-              href="/cart"
+            <button
+              onClick={() => setCartOpen(true)}
               aria-label={`Panier${mounted && cartCount > 0 ? `, ${cartCount} article${cartCount > 1 ? 's' : ''}` : ''}`}
               className="relative p-1 transition-opacity duration-200 hover:opacity-50"
               style={{ color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'white' }}
@@ -165,7 +167,7 @@ export function Navbar() {
                   {cartCount}
                 </span>
               )}
-            </Link>
+            </button>
 
             {/* Burger — mobile */}
             <button
@@ -223,6 +225,9 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Cart Sidebar */}
+      <CartSidebar open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   )
 }

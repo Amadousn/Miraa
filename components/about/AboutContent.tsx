@@ -69,7 +69,8 @@ export function AboutContent() {
         >
           <motion.p
             variants={fadeInUp}
-            className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-accent-muted)] mb-3 font-body"
+            className="uppercase mb-4 font-body"
+            style={{ fontSize: '13px', letterSpacing: '0.22em', color: 'rgba(255,248,240,0.85)' }}
           >
             Maison Miraa — Paris
           </motion.p>
@@ -99,69 +100,122 @@ export function AboutContent() {
               className="font-display font-light leading-relaxed text-[var(--color-text)] mb-6"
               style={{ fontSize: 'var(--text-xl)' }}
             >
-              Il y a des maisons que l'on n'oublie pas.{' '}
-              <em>Celles qui sentent quelque chose — le lin repassé, l'encre fraîche, la pierre froide.</em>
+              Il y a des maisons que l&apos;on n&apos;oublie pas.<br />
+              <em>Celles qui laissent une trace, une allure, une présence.</em>
             </motion.p>
 
             <motion.p
               variants={fadeInUp}
               className="text-base text-[var(--color-text-muted)] font-light leading-relaxed mb-6"
             >
-              Miraa est née d'une traversée. De canaux hollandais vus au petit matin, de portiques
-              milanais où le soleil dessine des ombres parfaites sur la laine. D'une conviction :
-              l'élégance masculine n'a pas de nationalité, elle a une mémoire.
+              Miraa est née d&apos;un regard en mouvement.
+              Des villes traversées, des silhouettes observées, des instants qui façonnent une certaine idée de l&apos;élégance.
+              Une conviction s&apos;est imposée : le style ne dépend pas d&apos;un lieu, il s&apos;inscrit dans le temps.
             </motion.p>
 
             <motion.p
               variants={fadeInUp}
               className="text-base text-[var(--color-text-muted)] font-light leading-relaxed"
             >
-              La maison s'est installée à Paris comme on pose une valise qu'on ne défait qu'à moitié —
-              gardant l'œil tourné vers l'ailleurs, les mains ancrées dans l'atelier.
+              La maison s&apos;est installée à Paris naturellement.
+              Comme une valise que l&apos;on ne défait jamais complètement, entre ailleurs et précision, entre instinct et exigence.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* Manifeste */}
-      <section className="section bg-[var(--color-surface-dark)]" id="manifeste">
-        <div className="container-tight">
+      <section
+        id="manifeste"
+        className="relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(165deg, #1A0E08 0%, #2A1A10 40%, #1E1209 100%)',
+          paddingBlock: 'clamp(80px, 12vw, 160px)',
+        }}
+      >
+        {/* Film grain */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            opacity: 0.04,
+            mixBlendMode: 'overlay',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          }}
+        />
+
+        <div className="container-tight relative">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
-            className="max-w-2xl mx-auto text-center"
+            className="text-center"
           >
-            <motion.p
-              variants={fadeInUp}
-              className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-accent-muted)] mb-8 font-body"
-            >
-              Manifeste
-            </motion.p>
+            {/* Label */}
+            <motion.div variants={fadeInUp} className="flex items-center justify-center gap-6 mb-14">
+              <span style={{ width: '40px', height: '1px', background: 'rgba(201,168,76,0.3)' }} />
+              <p
+                className="uppercase font-body"
+                style={{ fontSize: '11px', letterSpacing: '0.3em', color: 'rgba(201,168,76,0.7)' }}
+              >
+                Manifeste
+              </p>
+              <span style={{ width: '40px', height: '1px', background: 'rgba(201,168,76,0.3)' }} />
+            </motion.div>
+
+            {/* Citation */}
             <motion.blockquote
               variants={fadeInUp}
-              className="font-display font-light italic text-[var(--color-text-inverse)] leading-tight mb-12"
-              style={{ fontSize: 'var(--text-2xl)' }}
+              className="font-display font-light italic leading-none mx-auto"
+              style={{
+                fontSize: 'clamp(32px, 5vw, 72px)',
+                color: 'rgba(255,248,240,0.92)',
+                maxWidth: '680px',
+                lineHeight: 1.15,
+                marginBottom: 'clamp(48px, 6vw, 80px)',
+              }}
             >
-              "Nous ne fabriquons pas des vêtements.<br />
-              Nous construisons des silhouettes<br />
-              que les salles se rappellent."
+              &ldquo;Nous ne créons pas des pièces.<br />
+              Nous façonnons des silhouettes<br />
+              qui traversent le temps.&rdquo;
             </motion.blockquote>
-            <motion.div variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+
+            {/* Séparateur fin */}
+            <motion.div variants={fadeInUp} className="flex justify-center mb-14">
+              <span style={{ width: '60px', height: '1px', background: 'rgba(201,168,76,0.25)' }} />
+            </motion.div>
+
+            {/* 4 piliers */}
+            <motion.div
+              variants={fadeInUp}
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10 text-left max-w-3xl mx-auto"
+            >
               {[
-                { n: '01', t: 'La coupe comme langue', d: "Amsterdam pour la structure. Milan pour la fluidité. Un dialogue entre deux rigueurs." },
-                { n: '02', t: "L'absence comme présence", d: "Ce que Miraa retire d'une pièce vaut autant que ce qu'elle y met." },
-                { n: '03', t: 'Le temps comme matière', d: "Des collections conçues pour vieillir mieux que leur époque." },
-                { n: '04', t: 'Paris comme arbitre', d: "La ville qui a toujours su distinguer ce qui dure de ce qui brille." },
+                { n: '01', t: 'La coupe comme langage', d: 'Amsterdam pour la structure. Milan pour la fluidité.' },
+                { n: '02', t: "L'absence comme présence", d: "Ce que Miraa retire vaut autant que ce qu'elle ajoute." },
+                { n: '03', t: 'Le temps comme matière', d: 'Des pièces conçues pour vieillir mieux que leur époque.' },
+                { n: '04', t: 'Paris comme arbitre', d: 'Distinguer ce qui dure de ce qui brille.' },
               ].map((item) => (
-                <div key={item.n} className="flex gap-4">
-                  <span className="font-body text-[10px] uppercase tracking-widest text-[var(--color-accent-muted)] mt-1 shrink-0">
+                <div key={item.n} className="flex gap-5">
+                  <span
+                    className="font-body uppercase shrink-0"
+                    style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(201,168,76,0.5)', marginTop: '4px' }}
+                  >
                     {item.n}
                   </span>
                   <div>
-                    <p className="font-display font-light text-[var(--color-text-inverse)] mb-1">{item.t}</p>
-                    <p className="text-sm text-[var(--color-text-faint)] font-light leading-relaxed">{item.d}</p>
+                    <p
+                      className="font-display font-light"
+                      style={{ fontSize: '17px', color: 'rgba(255,248,240,0.88)', marginBottom: '5px' }}
+                    >
+                      {item.t}
+                    </p>
+                    <p
+                      className="font-light"
+                      style={{ fontFamily: 'var(--font-body)', fontSize: '13px', lineHeight: 1.6, color: 'rgba(255,248,240,0.45)' }}
+                    >
+                      {item.d}
+                    </p>
                   </div>
                 </div>
               ))}

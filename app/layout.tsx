@@ -44,6 +44,24 @@ export default function RootLayout({
       className={`${cormorant.variable} ${jost.variable} h-full`}
     >
       <body className="min-h-full flex flex-col antialiased" suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Maison Miraa',
+              url: 'https://maisonmiraa.com',
+              logo: 'https://maisonmiraa.com/favicon.ico',
+              description: 'Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles.',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Paris',
+                addressCountry: 'FR',
+              },
+            }),
+          }}
+        />
         <MotionProvider>
           <CustomCursor />
           <Navbar />

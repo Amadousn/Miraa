@@ -3,6 +3,12 @@ export interface ProductColor {
   hex: string
 }
 
+export interface ProductVariant {
+  id: string
+  size: string
+  availableForSale: boolean
+}
+
 export interface Product {
   id: string
   name: string
@@ -17,6 +23,7 @@ export interface Product {
   isNew: boolean
   isBestseller: boolean
   colors: ProductColor[]
+  variants?: ProductVariant[]
 }
 
 export interface CartItem {
@@ -24,6 +31,7 @@ export interface CartItem {
   quantity: number
   size: string
   color: string
+  variantId?: string
 }
 
 export interface WishlistItem {
