@@ -4,9 +4,9 @@ import Link from 'next/link'
 
 const footerLinks = {
   collection: [
-    { href: '/shop', label: 'Tous les articles' },
-    { href: '/shop?collection=essentiels', label: 'Essentiels' },
-    { href: '/shop?collection=ete', label: 'Été 2026' },
+    { href: '/shop', label: 'Tous les articles', comingSoon: false },
+    { href: '/shop?collection=essentiels', label: 'Essentiels', comingSoon: true },
+    { href: '/shop?collection=ete', label: 'Été 2026', comingSoon: true },
   ],
   maison: [
     { href: '/about', label: "L'histoire" },
@@ -47,13 +47,24 @@ export function Footer() {
             </p>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {footerLinks.collection.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '13px', color: 'rgba(232,213,175,0.72)', textDecoration: 'none', transition: 'color 0.2s ease' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = 'rgba(232,213,175,0.98)' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(232,213,175,0.72)' }}
-                  >
-                    {link.label}
-                  </Link>
+                <li key={link.href} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {link.comingSoon ? (
+                    <>
+                      <span style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '13px', color: 'rgba(232,213,175,0.35)' }}>
+                        {link.label}
+                      </span>
+                      <span style={{ fontSize: '8px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(212,184,150,0.45)', border: '1px solid rgba(212,184,150,0.25)', padding: '2px 5px' }}>
+                        Soon
+                      </span>
+                    </>
+                  ) : (
+                    <Link href={link.href} style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '13px', color: 'rgba(232,213,175,0.72)', textDecoration: 'none', transition: 'color 0.2s ease' }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = 'rgba(232,213,175,0.98)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(232,213,175,0.72)' }}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

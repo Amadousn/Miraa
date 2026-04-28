@@ -11,10 +11,10 @@ import { useCartStore } from '@/lib/store/cartStore'
 const DARK_HERO_PAGES = ['/']
 
 const navLinks = [
-  { href: '/shop', label: 'Collection' },
-  { href: '/shop?collection=essentiels', label: 'Essentiels' },
-  { href: '/shop?collection=ete', label: 'Été 2026' },
-  { href: '/about', label: 'La Maison' },
+  { href: '/shop', label: 'Collection', comingSoon: false },
+  { href: '/shop?collection=essentiels', label: 'Essentiels', comingSoon: true },
+  { href: '/shop?collection=ete', label: 'Été 2026', comingSoon: true },
+  { href: '/about', label: 'La Maison', comingSoon: false },
 ]
 
 /* Hauteur navbar réduite pour coller au mockup */
@@ -87,20 +87,50 @@ export function Navbar() {
           {/* Nav links — desktop */}
           <nav className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-body font-light transition-opacity duration-200 hover:opacity-50"
-                style={{
-                  fontSize: '13px',
-                  letterSpacing: '0.13em',
-                  textTransform: 'uppercase',
-                  color: (isScrolled || !isHeroPage) ? 'var(--color-text-muted)' : 'rgba(255,248,235,0.95)',
-                  textShadow: (isScrolled || !isHeroPage) ? 'none' : '0 1px 8px rgba(30,20,10,0.4)',
-                }}
-              >
-                {link.label}
-              </Link>
+              link.comingSoon ? (
+                <span
+                  key={link.href}
+                  className="font-body font-light relative"
+                  style={{
+                    fontSize: '13px',
+                    letterSpacing: '0.13em',
+                    textTransform: 'uppercase',
+                    color: (isScrolled || !isHeroPage) ? 'var(--color-text-faint)' : 'rgba(255,248,235,0.45)',
+                    cursor: 'default',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  {link.label}
+                  <span style={{
+                    fontSize: '8px',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: (isScrolled || !isHeroPage) ? 'var(--color-accent-muted)' : 'rgba(212,184,150,0.70)',
+                    border: `1px solid ${(isScrolled || !isHeroPage) ? 'var(--color-accent-muted)' : 'rgba(212,184,150,0.40)'}`,
+                    padding: '2px 5px',
+                    lineHeight: 1.4,
+                  }}>
+                    Soon
+                  </span>
+                </span>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="font-body font-light transition-opacity duration-200 hover:opacity-50"
+                  style={{
+                    fontSize: '13px',
+                    letterSpacing: '0.13em',
+                    textTransform: 'uppercase',
+                    color: (isScrolled || !isHeroPage) ? 'var(--color-text-muted)' : 'rgba(255,248,235,0.95)',
+                    textShadow: (isScrolled || !isHeroPage) ? 'none' : '0 1px 8px rgba(30,20,10,0.4)',
+                  }}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -167,14 +197,26 @@ export function Navbar() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06, type: 'spring', damping: 25 }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
                 >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="font-display text-3xl font-light text-[var(--color-text-inverse)] hover:opacity-60 transition-opacity duration-200"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.comingSoon ? (
+                    <span className="font-display text-3xl font-light" style={{ color: 'rgba(255,248,235,0.35)' }}>
+                      {link.label}
+                    </span>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="font-display text-3xl font-light text-[var(--color-text-inverse)] hover:opacity-60 transition-opacity duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                  {link.comingSoon && (
+                    <span style={{ fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(212,184,150,0.55)', border: '1px solid rgba(212,184,150,0.30)', padding: '3px 7px' }}>
+                      Soon
+                    </span>
+                  )}
                 </motion.div>
               ))}
             </nav>

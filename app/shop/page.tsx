@@ -14,8 +14,10 @@ const collections = ['Tous', 'essentiels', 'ete']
 const collectionLabels: Record<string, string> = {
   Tous: 'Tous',
   essentiels: 'Essentiels',
-  ete: 'Été 2025',
+  ete: 'Été 2026',
 }
+
+const COMING_SOON_COLLECTIONS = ['essentiels', 'ete']
 
 export default function ShopPage() {
   const [activeCategory, setActiveCategory] = useState('Tous')
@@ -96,7 +98,25 @@ export default function ShopPage() {
       {/* Grid */}
       <div className="section">
         <div className="container-miraa">
-          {filtered.length === 0 ? (
+          {COMING_SOON_COLLECTIONS.includes(activeCollection) ? (
+            <motion.div
+              key={activeCollection}
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col items-center justify-center py-32 text-center"
+            >
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '10px', letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--color-accent-muted)', marginBottom: '20px' }}>
+                {collectionLabels[activeCollection]}
+              </p>
+              <h2 className="font-display font-light" style={{ fontSize: 'var(--text-2xl)', color: 'var(--color-text)', marginBottom: '16px', lineHeight: 1.1 }}>
+                Bientôt disponible.
+              </h2>
+              <p style={{ fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: '14px', color: 'var(--color-text-muted)', maxWidth: '360px', lineHeight: 1.75 }}>
+                Cette collection est en cours de préparation. Elle sera disponible prochainement.
+              </p>
+            </motion.div>
+          ) : filtered.length === 0 ? (
             <p className="text-center text-[var(--color-text-muted)] py-20 font-display font-light text-xl">
               Aucun article dans cette sélection.
             </p>

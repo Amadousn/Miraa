@@ -52,10 +52,11 @@ export function AboutContent() {
       {/* Hero */}
       <section className="relative h-[70vh] overflow-hidden">
         <Image
-          src="https://picsum.photos/seed/miraa-about/1920/1080"
+          src="/lamaison.jpg"
           alt="Maison Miraa"
           fill
           className="object-cover"
+          style={{ objectPosition: '50% 15%' }}
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#2C1A0E]/80 via-[#2C1A0E]/30 to-transparent" />
@@ -78,7 +79,7 @@ export function AboutContent() {
             style={{ fontSize: 'var(--text-3xl)' }}
           >
             Une obsession<br />
-            pour la silhouette.
+            de la silhouette.
           </motion.h1>
         </motion.div>
       </section>
