@@ -24,11 +24,11 @@ export default function LivraisonsPage() {
             <div className="space-y-4">
               <div style={{ borderBottom: '1px solid var(--color-border)', paddingBottom: '16px' }}>
                 <p style={{ color: 'var(--color-text)', fontWeight: 400, marginBottom: '4px' }}>France métropolitaine</p>
-                <p>Livraison offerte dès 200 € — Sinon 9,90 €<br />Délai : 3 à 7 jours ouvrés</p>
+                <p>Livraison offerte dès 100 € — Sinon 5,90 €<br />Délai : 3 à 7 jours ouvrés</p>
               </div>
               <div style={{ borderBottom: '1px solid var(--color-border)', paddingBottom: '16px' }}>
                 <p style={{ color: 'var(--color-text)', fontWeight: 400, marginBottom: '4px' }}>Europe (UE)</p>
-                <p>14,90 €<br />Délai : 5 à 10 jours ouvrés</p>
+                <p>9,90 €<br />Délai : 5 à 10 jours ouvrés</p>
               </div>
               <div>
                 <p style={{ color: 'var(--color-text)', fontWeight: 400, marginBottom: '4px' }}>International</p>

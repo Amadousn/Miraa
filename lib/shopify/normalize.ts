@@ -7,7 +7,6 @@ export function normalizeProduct(p: ShopifyProduct): NormalizedProduct {
   const priceFormatted = new Intl.NumberFormat('fr-FR', {
     style: 'currency',
     currency,
-    minimumFractionDigits: 0,
   }).format(price)
 
   const images = p.images.edges.length > 0

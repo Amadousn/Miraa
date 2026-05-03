@@ -68,7 +68,7 @@ export default function CGVPage() {
             </h2>
             <p>
               Les commandes sont expédiées sous 3 à 5 jours ouvrés. La livraison est
-              offerte en France métropolitaine à partir de 200 €. Les délais de
+              offerte en France métropolitaine à partir de 100 €. Les délais de
               livraison sont donnés à titre indicatif.
             </p>
           </section>

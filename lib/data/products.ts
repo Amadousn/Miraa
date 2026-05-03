@@ -4,7 +4,7 @@ export const products: Product[] = [
   {
     id: 'pantalon-kaki',
     name: 'Pantalon Structuré Kaki',
-    price: 320,
+    price: 49.99,
     category: 'Pantalons',
     collection: 'tous',
     images: [
@@ -14,7 +14,7 @@ export const products: Product[] = [
       '/products/pantalon_kaki_d3.jpg',
       '/products/pantalon_kaki_d4.jpg',
     ],
-    sizes: ['44', '46', '48', '50', '52'],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     materials: '98% Laine mérinos, 2% Élasthanne — Italie',
     care: 'Nettoyage à sec recommandé',
     description:
@@ -26,7 +26,7 @@ export const products: Product[] = [
   {
     id: 'pantalon-sable',
     name: 'Pantalon Droit Sable',
-    price: 320,
+    price: 49.99,
     category: 'Pantalons',
     collection: 'tous',
     images: [
@@ -36,7 +36,7 @@ export const products: Product[] = [
       '/products/pantalon_sable_d3.jpg',
       '/products/pantalon_sable_d4.jpg',
     ],
-    sizes: ['44', '46', '48', '50', '52'],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     materials: '98% Laine mérinos, 2% Élasthanne — Italie',
     care: 'Nettoyage à sec recommandé',
     description:
@@ -48,7 +48,7 @@ export const products: Product[] = [
   {
     id: 'teeshirt-sable-ls',
     name: 'T-shirt Manches Longues Sable',
-    price: 180,
+    price: 59.99,
     category: 'Hauts',
     collection: 'tous',
     images: [
@@ -57,7 +57,7 @@ export const products: Product[] = [
       '/products/tshirt_sable_ml_d2.jpg',
       '/products/tshirt_sable_ml_d3.jpg',
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     materials: '100% Coton pima — Pérou',
     care: 'Lavage machine 30°, séchage à plat',
     description:
@@ -69,7 +69,7 @@ export const products: Product[] = [
   {
     id: 'teeshirt-col-rond-sable',
     name: 'T-shirt Col Rond Sable',
-    price: 160,
+    price: 49.99,
     category: 'Hauts',
     collection: 'tous',
     images: [
@@ -78,7 +78,7 @@ export const products: Product[] = [
       '/products/tshirt_sable_mc_d2.jpg',
       '/products/tshirt_sable_mc_d3.jpg',
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     materials: '100% Coton pima — Pérou',
     care: 'Lavage machine 30°, séchage à plat',
     description:
@@ -90,7 +90,7 @@ export const products: Product[] = [
   {
     id: 'teeshirt-marron',
     name: 'T-shirt Col Rond Marron',
-    price: 160,
+    price: 49.99,
     category: 'Hauts',
     collection: 'tous',
     images: [
@@ -99,7 +99,7 @@ export const products: Product[] = [
       '/products/tshirt_marron_mc_d2.jpg',
       '/products/tshirt_marron_mc_d3.jpg',
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     materials: '100% Coton pima — Pérou',
     care: 'Lavage machine 30°, séchage à plat',
     description:
@@ -111,7 +111,7 @@ export const products: Product[] = [
   {
     id: 'veste-bomber-kaki',
     name: 'Veste Sans Manches Kaki',
-    price: 420,
+    price: 64.99,
     category: 'Vestes',
     collection: 'tous',
     images: [
@@ -121,7 +121,7 @@ export const products: Product[] = [
       '/products/veste_kaki_d2.jpg',
       '/products/veste_kaki_d3.jpg',
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     materials: '100% Nylon ripstop — Japon',
     care: 'Lavage machine 30°',
     description:
@@ -133,7 +133,7 @@ export const products: Product[] = [
   {
     id: 'veste-reversible',
     name: 'Veste Réversible Gris/Sable',
-    price: 480,
+    price: 84.99,
     category: 'Vestes',
     collection: 'tous',
     images: [
@@ -144,7 +144,7 @@ export const products: Product[] = [
       '/products/veste_reversible_d4.jpg',
       '/products/veste_reversible_d5.jpg',
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     materials: '100% Nylon ripstop — Japon',
     care: 'Lavage machine 30°',
     description:

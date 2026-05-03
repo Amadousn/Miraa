@@ -61,6 +61,7 @@ export function ProductDetailClient({ product }: Props) {
                     src={product.images[selectedImage]}
                     alt={product.name}
                     fill
+                    quality={100}
                     className="object-contain"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     priority
@@ -89,8 +90,9 @@ export function ProductDetailClient({ product }: Props) {
                       src={img}
                       alt={`${product.name} - ${i + 1}`}
                       fill
+                      quality={90}
                       className="object-contain"
-                      sizes="120px"
+                      sizes="200px"
                     />
                   </button>
                 ))}
@@ -124,7 +126,7 @@ export function ProductDetailClient({ product }: Props) {
               variants={fadeInUp}
               style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '16px', letterSpacing: '0.03em', color: 'var(--color-text)', marginBottom: '32px' }}
             >
-              {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(product.price)}
+              {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(product.price)}
             </motion.p>
 
             <motion.p

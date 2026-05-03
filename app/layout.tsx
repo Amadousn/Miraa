@@ -22,7 +22,11 @@ const jost = Jost({
 })
 
 export const metadata: Metadata = {
-  title: 'Miraa — La matière avant tout',
+  metadataBase: new URL('https://maisonmiraa.com'),
+  title: {
+    default: 'Miraa — La matière avant tout',
+    template: '%s — Miraa',
+  },
   description:
     'Miraa. Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles, savoir-faire européen.',
   openGraph: {
@@ -30,7 +34,14 @@ export const metadata: Metadata = {
     description: 'Prêt-à-porter masculin haut de gamme.',
     locale: 'fr_FR',
     type: 'website',
+    siteName: 'Maison Miraa',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Miraa — La matière avant tout',
+    description: 'Prêt-à-porter masculin haut de gamme.',
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({

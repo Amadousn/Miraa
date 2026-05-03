@@ -111,8 +111,9 @@ export function CartSidebar({ open, onClose }: CartSidebarProps) {
                         src={item.product.images[0]}
                         alt={item.product.name}
                         fill
+                        quality={90}
                         className="object-cover"
-                        sizes="80px"
+                        sizes="160px"
                       />
                     </div>
 
@@ -167,7 +168,6 @@ export function CartSidebar({ open, onClose }: CartSidebarProps) {
                           {new Intl.NumberFormat('fr-FR', {
                             style: 'currency',
                             currency: 'EUR',
-                            minimumFractionDigits: 0,
                           }).format(item.product.price * item.quantity)}
                         </p>
                       </div>
@@ -190,12 +190,11 @@ export function CartSidebar({ open, onClose }: CartSidebarProps) {
                 {new Intl.NumberFormat('fr-FR', {
                   style: 'currency',
                   currency: 'EUR',
-                  minimumFractionDigits: 0,
                 }).format(total)}
               </span>
             </div>
             <p className="text-xs text-[var(--color-text-faint)] mb-4 font-light">
-              Livraison offerte à partir de 200 €. Taxes incluses.
+              Livraison offerte à partir de 100 €. Taxes incluses.
             </p>
             <button
               onClick={handleCheckout}

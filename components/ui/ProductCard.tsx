@@ -38,11 +38,12 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             src={product.images[0]}
             alt={product.name}
             fill
+            quality={95}
             className={cn(
               "object-cover transition-all duration-700 group-hover:scale-105",
               hovered && hasSecondImage ? "opacity-0" : "opacity-100"
             )}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 33vw"
             priority={priority}
           />
           {/* Secondary image — revealed on hover */}
@@ -51,11 +52,12 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
               src={product.images[1]}
               alt={`${product.name} — vue alternative`}
               fill
+              quality={95}
               className={cn(
                 "object-cover transition-opacity duration-700",
                 hovered ? "opacity-100" : "opacity-0"
               )}
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              sizes="(max-width: 640px) 75vw, (max-width: 1024px) 50vw, 33vw"
             />
           )}
 
@@ -121,7 +123,6 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             {new Intl.NumberFormat('fr-FR', {
               style: 'currency',
               currency: 'EUR',
-              minimumFractionDigits: 0,
             }).format(product.price)}
           </p>
 

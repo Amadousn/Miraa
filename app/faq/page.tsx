@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: 'La livraison est-elle offerte ?',
-    a: 'Oui, la livraison est offerte en France métropolitaine pour toute commande supérieure à 200 €.',
+    a: 'Oui, la livraison est offerte en France métropolitaine pour toute commande supérieure à 100 €.',
   },
   {
     q: 'Comment effectuer un retour ?',
