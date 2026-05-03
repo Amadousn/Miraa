@@ -26,6 +26,7 @@ export interface ShopifyProduct {
   handle: string
   description: string
   descriptionHtml: string
+  productType: string
   tags: string[]
   featuredImage: ShopifyImage | null
   images: { edges: { node: ShopifyImage }[] }

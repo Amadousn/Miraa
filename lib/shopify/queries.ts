@@ -5,9 +5,10 @@ const PRODUCT_FRAGMENT = `
     title
     handle
     description
+    productType
     tags
     featuredImage { url altText width height }
-    images(first: 5) { edges { node { url altText width height } } }
+    images(first: 10) { edges { node { url altText width height } } }
     priceRange {
       minVariantPrice { amount currencyCode }
       maxVariantPrice { amount currencyCode }
