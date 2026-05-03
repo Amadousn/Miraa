@@ -23,7 +23,8 @@ export default function CGVPage() {
             </h2>
             <p>
               Les présentes conditions générales de vente régissent les ventes de produits
-              effectuées par Maison Miraa via le site maisonmiraa.com. Toute commande
+              effectuées par Ali-Erdem Eroglu (Entreprise individuelle, SIRET : 10338547200016),
+              exploitant la marque Maison Miraa, via le site maisonmiraa.com. Toute commande
               implique l&apos;acceptation sans réserve des présentes CGV.
             </p>
           </section>
