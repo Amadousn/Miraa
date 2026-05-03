@@ -15,8 +15,8 @@ export const products: Product[] = [
       '/products/pantalon_kaki_d4.jpg',
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    materials: '98% Laine mérinos, 2% Élasthanne — Italie',
-    care: 'Nettoyage à sec recommandé',
+    materials: '100% Polyester',
+    care: 'Lavage machine 30°, séchage à plat',
     description:
       'Pantalon droit taille mi-haute, pince centrale, tombé impeccable. Couleur kaki profond, coupe intemporelle.',
     isNew: true,
@@ -37,8 +37,8 @@ export const products: Product[] = [
       '/products/pantalon_sable_d4.jpg',
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    materials: '98% Laine mérinos, 2% Élasthanne — Italie',
-    care: 'Nettoyage à sec recommandé',
+    materials: '37% Polyamide, 30% Coton, 30% Viscose, 3% Élasthane',
+    care: 'Lavage machine 30°, séchage à plat',
     description:
       'Pantalon droit taille mi-haute, coupe épurée. Coloris sable naturel, polyvalent et raffiné.',
     isNew: true,
@@ -58,7 +58,7 @@ export const products: Product[] = [
       '/products/tshirt_sable_ml_d3.jpg',
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    materials: '100% Coton pima — Pérou',
+    materials: '65% Rayonne, 30% Nylon, 5% Spandex',
     care: 'Lavage machine 30°, séchage à plat',
     description:
       'T-shirt manches longues en coton pima. Col rond, coupe droite. Le basique qui ne l\'est pas.',
@@ -79,7 +79,7 @@ export const products: Product[] = [
       '/products/tshirt_sable_mc_d3.jpg',
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    materials: '100% Coton pima — Pérou',
+    materials: '97% Polyester, 3% Élasthane',
     care: 'Lavage machine 30°, séchage à plat',
     description:
       'T-shirt col rond à manches courtes. Coupe légèrement ample, tombé naturel.',
@@ -100,7 +100,7 @@ export const products: Product[] = [
       '/products/tshirt_marron_mc_d3.jpg',
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    materials: '100% Coton pima — Pérou',
+    materials: '97% Polyester, 3% Élasthane',
     care: 'Lavage machine 30°, séchage à plat',
     description:
       'T-shirt col rond en coton pima. Coloris marron profond, coupe droite structurée.',
@@ -122,7 +122,7 @@ export const products: Product[] = [
       '/products/veste_kaki_d3.jpg',
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    materials: '100% Nylon ripstop — Japon',
+    materials: '100% Polyester',
     care: 'Lavage machine 30°',
     description:
       'Veste sans manches col montant, fermeture zippée, poches latérales. Légère et structurante.',
@@ -145,7 +145,7 @@ export const products: Product[] = [
       '/products/veste_reversible_d5.jpg',
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    materials: '100% Nylon ripstop — Japon',
+    materials: '100% Polyester',
     care: 'Lavage machine 30°',
     description:
       'Veste sans manches réversible. Côté gris ardoise, côté sable. Deux vestes en une.',
