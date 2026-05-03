@@ -19,7 +19,8 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   const wishlisted = isWishlisted(product.id)
   const [hovered, setHovered] = useState(false)
 
-  const hasSecondImage = product.images.length > 1
+  const cardImages = product.images.slice(0, 2)
+  const hasSecondImage = cardImages.length > 1
 
   return (
     <motion.article
@@ -35,7 +36,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         <div className="relative overflow-hidden aspect-[3/4]" style={{ backgroundColor: '#EFECEB' }}>
           {/* Primary image */}
           <Image
-            src={product.images[0]}
+            src={cardImages[0]}
             alt={product.name}
             fill
             quality={95}
@@ -49,7 +50,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           {/* Secondary image — revealed on hover */}
           {hasSecondImage && (
             <Image
-              src={product.images[1]}
+              src={cardImages[1]}
               alt={`${product.name} — vue alternative`}
               fill
               quality={95}
