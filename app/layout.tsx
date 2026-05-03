@@ -24,24 +24,31 @@ const jost = Jost({
 export const metadata: Metadata = {
   metadataBase: new URL('https://maisonmiraa.com'),
   title: {
-    default: 'Miraa — La matière avant tout',
-    template: '%s — Miraa',
+    default: 'Maison Miraa — Prêt-à-porter masculin Paris',
+    template: '%s | Maison Miraa',
   },
   description:
-    'Miraa. Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles, savoir-faire européen.',
+    'Maison Miraa — Prêt-à-porter masculin haut de gamme à Paris. Pantalons, t-shirts, vestes. Matières nobles, silhouettes intemporelles, livraison France & Europe.',
+  keywords: [
+    'prêt-à-porter masculin', 'mode homme Paris', 'vêtements homme luxe',
+    'pantalon homme', 'veste homme', 'Maison Miraa', 'mode masculine Paris',
+    'vêtements homme haut de gamme', 't-shirt homme qualité',
+  ],
   openGraph: {
-    title: 'Miraa — La matière avant tout',
-    description: 'Prêt-à-porter masculin haut de gamme.',
+    title: 'Maison Miraa — Prêt-à-porter masculin Paris',
+    description: 'Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles.',
     locale: 'fr_FR',
     type: 'website',
     siteName: 'Maison Miraa',
+    url: 'https://maisonmiraa.com',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Miraa — La matière avant tout',
-    description: 'Prêt-à-porter masculin haut de gamme.',
+    title: 'Maison Miraa — Prêt-à-porter masculin Paris',
+    description: 'Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles.',
   },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  alternates: { canonical: 'https://maisonmiraa.com' },
 }
 
 export default function RootLayout({
@@ -54,6 +61,12 @@ export default function RootLayout({
       lang="fr"
       className={`${cormorant.variable} ${jost.variable} h-full`}
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.shopify.com" />
+        <link rel="dns-prefetch" href="https://maison-miraa.myshopify.com" />
+      </head>
       <body className="min-h-full flex flex-col antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"

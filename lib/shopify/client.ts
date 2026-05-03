@@ -11,7 +11,7 @@ export async function shopifyFetch<T>(query: string, variables?: Record<string, 
       'X-Shopify-Storefront-Access-Token': SHOPIFY_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
-    next: { revalidate: 60 }, // ISR — revalide toutes les 60s
+    next: { revalidate: 300 }, // ISR — revalide toutes les 5 min
   })
 
   if (!res.ok) throw new Error(`Shopify API error: ${res.status}`)
