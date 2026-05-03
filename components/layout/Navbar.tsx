@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
@@ -72,16 +71,23 @@ export function Navbar() {
         />
 
         <div className={`container-miraa flex items-center justify-between ${NAV_H}`}>
-          {/* Logo image */}
-          <Link href="/" className="transition-opacity duration-200 hover:opacity-70 flex items-center">
-            <Image
-              src={(isScrolled || !isHeroPage) ? '/logo/logo-horizontal-light.png' : '/logo/logo-horizontal-dark.png'}
-              alt="Maison Miraa"
-              width={180}
-              height={40}
-              priority
-              style={{ objectFit: 'contain', height: '32px', width: 'auto' }}
-            />
+          {/* Logo typographique */}
+          <Link
+            href="/"
+            className="transition-opacity duration-200 hover:opacity-60"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 400,
+              fontStyle: 'italic',
+              fontSize: '20px',
+              letterSpacing: '0.06em',
+              color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'rgba(245,239,230,0.96)',
+              textShadow: (isScrolled || !isHeroPage) ? 'none' : '0 1px 12px rgba(30,20,10,0.5)',
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Maison Miraa
           </Link>
 
           {/* Nav links — desktop */}
