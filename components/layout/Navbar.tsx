@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
@@ -71,19 +72,16 @@ export function Navbar() {
         />
 
         <div className={`container-miraa flex items-center justify-between ${NAV_H}`}>
-          {/* Logo — Cormorant italic, uppercase tracké comme dans le mockup */}
-          <Link
-            href="/"
-            className="font-display font-light transition-opacity duration-200 hover:opacity-70"
-            style={{
-              fontSize: '32px',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: (isScrolled || !isHeroPage) ? 'var(--color-text)' : 'rgba(255,248,235,1)',
-              textShadow: (isScrolled || !isHeroPage) ? 'none' : '0 1px 12px rgba(30,20,10,0.35)',
-            }}
-          >
-            Miraa
+          {/* Logo image */}
+          <Link href="/" className="transition-opacity duration-200 hover:opacity-70 flex items-center">
+            <Image
+              src={(isScrolled || !isHeroPage) ? '/logo/logo-horizontal-light.png' : '/logo/logo-horizontal-dark.png'}
+              alt="Maison Miraa"
+              width={180}
+              height={40}
+              priority
+              style={{ objectFit: 'contain', height: '32px', width: 'auto' }}
+            />
           </Link>
 
           {/* Nav links — desktop */}
@@ -190,7 +188,7 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-            className="fixed inset-0 z-40 bg-[var(--color-surface-dark)] flex flex-col pt-20 px-8"
+            className="fixed inset-0 z-40 bg-[var(--color-surface-dark)] flex flex-col pt-16 px-8"
           >
             <nav className="flex flex-col gap-6 mt-8">
               {navLinks.map((link, i) => (

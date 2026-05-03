@@ -34,14 +34,6 @@ export const metadata: Metadata = {
     'pantalon homme', 'veste homme', 'Maison Miraa', 'mode masculine Paris',
     'vêtements homme haut de gamme', 't-shirt homme qualité',
   ],
-  openGraph: {
-    title: 'Maison Miraa — Prêt-à-porter masculin Paris',
-    description: 'Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles.',
-    locale: 'fr_FR',
-    type: 'website',
-    siteName: 'Maison Miraa',
-    url: 'https://maisonmiraa.com',
-  },
   twitter: {
     card: 'summary_large_image',
     title: 'Maison Miraa — Prêt-à-porter masculin Paris',
@@ -49,6 +41,19 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   alternates: { canonical: 'https://maisonmiraa.com' },
+  icons: {
+    icon: '/logo/logo-monogram.png',
+    apple: '/logo/logo-monogram.png',
+  },
+  openGraph: {
+    title: 'Maison Miraa — Prêt-à-porter masculin Paris',
+    description: 'Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles.',
+    locale: 'fr_FR',
+    type: 'website',
+    siteName: 'Maison Miraa',
+    url: 'https://maisonmiraa.com',
+    images: [{ url: '/logo/og-image.png', width: 1200, height: 630, alt: 'Maison Miraa' }],
+  },
 }
 
 export default function RootLayout({
@@ -76,7 +81,7 @@ export default function RootLayout({
               '@type': 'Organization',
               name: 'Maison Miraa',
               url: 'https://maisonmiraa.com',
-              logo: 'https://maisonmiraa.com/favicon.ico',
+              logo: 'https://maisonmiraa.com/logo/logo-horizontal-light.png',
               description: 'Prêt-à-porter masculin haut de gamme. Matières nobles, silhouettes intemporelles.',
               address: {
                 '@type': 'PostalAddress',
