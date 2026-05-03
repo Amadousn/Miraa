@@ -9,11 +9,13 @@ export function normalizeProduct(p: ShopifyProduct): NormalizedProduct {
     currency,
   }).format(price)
 
-  const images = p.images.edges.length > 0
+  const allImages = p.images.edges.length > 0
     ? p.images.edges.map((e) => e.node.url)
     : p.featuredImage
     ? [p.featuredImage.url]
     : []
+  // On garde max 2 images : principale (hover off) + alternative (hover on)
+  const images = allImages.slice(0, 2)
 
   const collection = p.collections.edges[0]?.node.handle ?? 'essentiels'
   const category = p.collections.edges[0]?.node.title ?? 'Collection'
