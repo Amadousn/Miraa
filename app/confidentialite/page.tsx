@@ -22,8 +22,8 @@ export default function ConfidentialitePage() {
               Responsable du traitement
             </h2>
             <p>
-              Ali-Erdem Eroglu, Entreprise individuelle (SIRET : 10338547200016),
-              exploitant la marque Maison Miraa, 2 Rue des Grands Champs, France,
+              Maison Miraa, Entreprise individuelle (SIRET : 10338547200016),
+              2 Rue des Grands Champs, France,
               est responsable du traitement de vos données personnelles dans le cadre
               de l&apos;utilisation de ce site et de ses services.
             </p>

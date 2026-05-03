@@ -24,13 +24,12 @@ export default function MentionsLegalesPage() {
             <p>
               Maison Miraa<br />
               Entreprise individuelle — SIRET : 10338547200016<br />
-              Raison sociale : Ali-Erdem Eroglu<br />
               2 Rue des Grands Champs<br />
               France
             </p>
             <p className="mt-2">
               Numéro de TVA : FR92103385472<br />
-              Directeur de la publication : Ali-Erdem Eroglu<br />
+              Directeur de la publication : Maison Miraa<br />
               Email : contact@maisonmiraa.com
             </p>
           </section>
