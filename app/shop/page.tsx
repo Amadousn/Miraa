@@ -24,8 +24,13 @@ export default function ShopPage() {
   }, [])
 
   const filtered = useMemo(() => {
+    if (activeCategory === 'Tous') return products
     return products.filter((p) => {
-      return activeCategory === 'Tous' || p.category === activeCategory
+      const cat = p.category?.toLowerCase() ?? ''
+      if (activeCategory === 'Hauts') return cat.includes('t-shirt') || cat.includes('haut') || cat.includes('chemise') || cat.includes('top')
+      if (activeCategory === 'Pantalons') return cat.includes('pantalon')
+      if (activeCategory === 'Vestes') return cat.includes('veste') || cat.includes('blazer') || cat.includes('manteau')
+      return false
     })
   }, [products, activeCategory])
 
