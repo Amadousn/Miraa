@@ -133,7 +133,7 @@ export const products: Product[] = [
   {
     id: 'veste-reversible',
     name: 'Veste Réversible Gris/Sable',
-    price: 84.99,
+    price: 75.99,
     category: 'Vestes',
     collection: 'tous',
     images: [
